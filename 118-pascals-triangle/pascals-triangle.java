@@ -9,7 +9,7 @@ class Solution {
             int first = 1;
             List<Integer> l1 = new ArrayList<>();
             
-            for (int i = 1; i < j; i++) { // Adjusted loop limit from 1 to j-1
+            for (int i = 1; i < j; i++) { 
                 l1.add(ans(j - 1, i - 1));
             }
             l1.add(first);
@@ -21,11 +21,11 @@ class Solution {
     }
     
     public int ans(int n, int r) {
-        double res = 1; // Use double for floating-point arithmetic
+        double res = 1;
         for (int i = 0; i < r; i++) {
             res = res * (n - i);
             res = res / (i + 1);
         }
-        return (int) res; // Convert back to int if needed
+        return (int) res;
     }
 }
