@@ -4,7 +4,7 @@ class Solution {
         while(r<n)
         {
             if(nums[r]==0)  zeros++;
-            if(zeros>k) 
+            while(zeros>k)
             {
                 if(nums[l]==0)
                 {
@@ -14,9 +14,9 @@ class Solution {
             }
             if(zeros<=k)
             {
-                maxlen=Math.max(maxlen,r-l+1); 
+                maxlen=Math.max(maxlen,r-l+1);
             }
-             r++;
+            r++;
         }
         return maxlen;
     }
