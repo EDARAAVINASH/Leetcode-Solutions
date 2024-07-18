@@ -1,24 +1,25 @@
 class Solution {
-  public int minSubarray(int[] nums, int p) {
-    final long sum = Arrays.stream(nums).asLongStream().sum();
-    final int remainder = (int) (sum % p);
-    if (remainder == 0)
-      return 0;
+    public int minSubarray(int[] nums, int p) {
+        int mod = 0;
+        for (int num : nums) {
+            mod += num;
+            mod %= p;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        
+        int preSum = 0;
+        int ans = nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            preSum += nums[i];
+            preSum %= p;
+            map.put(preSum, i);
 
-    int ans = nums.length;
-    int prefix = 0;
-    Map<Integer, Integer> prefixToIndex = new HashMap<>();
-    prefixToIndex.put(0, -1);
-
-    for (int i = 0; i < nums.length; ++i) {
-      prefix += nums[i];
-      prefix %= p;
-      final int target = (prefix - remainder + p) % p;
-      if (prefixToIndex.containsKey(target))
-        ans = Math.min(ans, i - prefixToIndex.get(target));
-      prefixToIndex.put(prefix, i);
+            int wanted = (preSum - mod + p) % p;
+            if (map.containsKey(wanted)) {
+                ans = Math.min(ans, i - map.get(wanted));
+            }
+        }
+        return ans == nums.length ? -1 : ans;
     }
-
-    return ans == nums.length ? -1 : ans;
-  }
 }
