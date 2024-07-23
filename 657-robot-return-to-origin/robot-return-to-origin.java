@@ -16,7 +16,6 @@ class Solution {
                           break;
             }
         }
-        if(vertical==0 && horizontal==0) return true;
-        return false;
+        return vertical==0 && horizontal==0;
     }
 }
