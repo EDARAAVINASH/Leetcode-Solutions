@@ -16,12 +16,12 @@
 class Solution {
     public boolean isSymmetric(TreeNode root) 
     {
-        return isSym(root.left,root.right);   
+        return root==null || check(root.left,root.right);
     }
-    public static boolean isSym(TreeNode left,TreeNode right)
+    public static boolean check(TreeNode left,TreeNode right)
     {
-        if(left==null && right==null) return true;
-        if(left==null || right==null) return false;
-        return left.val==right.val && isSym(left.left,right.right) && isSym(left.right,right.left);
+        if(left==null || right==null) return left==right;
+        if(left.val!=right.val) return false;
+        return check(left.right,right.left) && check(left.left,right.right);
     }
 }
