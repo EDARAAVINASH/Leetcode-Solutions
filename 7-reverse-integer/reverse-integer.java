@@ -1,16 +1,21 @@
-class Solution {
+public class Solution {
     public int reverse(int x) {
-        long sum=0;
-        while(x!=0)
-        {
-            int a=x%10;
-            sum=sum*10+a%10;
-            x=x/10;
+        int sum = 0;
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
+
+            // Check for overflow
+            if (sum > Integer.MAX_VALUE / 10 || (sum == Integer.MAX_VALUE / 10 && pop > 7)) {
+                return 0;
+            }
+            // Check for underflow
+            if (sum < Integer.MIN_VALUE / 10 || (sum == Integer.MIN_VALUE / 10 && pop < -8)) {
+                return 0;
+            }
+
+            sum = sum * 10 + pop;
         }
-        if (sum > Integer.MAX_VALUE || sum < Integer.MIN_VALUE) 
-        {
-            return 0;
-        }
-        return (int)sum;
+        return sum;
     }
 }
