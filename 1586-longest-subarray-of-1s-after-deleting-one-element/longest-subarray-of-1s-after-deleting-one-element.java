@@ -16,6 +16,6 @@ class Solution {
             maxi=Math.max(maxi,r-l);
             r++;
         }    
-        return maxi > 0 ? maxi : 0;
+        return maxi;
     }
 }
