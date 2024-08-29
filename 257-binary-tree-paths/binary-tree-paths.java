@@ -23,10 +23,10 @@ class Solution {
     }
     public static void path(TreeNode root,List<String> list1,StringBuilder sb)
     {
-        if(root==null) 
-        {
-            list1.add(sb.toString());
-        }
+        // if(root==null) 
+        // {
+        //     list1.add(sb.toString());
+        // }
         if(root.left==null && root.right==null) 
         {
             list1.add(sb.append(root.val).toString());
